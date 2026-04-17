@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Potential-Game UAV Simulation Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; margin: 24px auto; max-width: 1500px; line-height: 1.5; }
+    h1, h2, h3 { margin-top: 1.1em; }
+    .viz-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    figure.prominent { margin: 0; border: 2px solid #cfd6de; padding: 14px; border-radius: 10px; background: #fbfcfe; box-shadow: 0 3px 12px rgba(0,0,0,0.06); }
+    figure.prominent figcaption { font-size: 1.05rem; margin-bottom: 10px; font-weight: 600; }
+    img { width: 100%; height: auto; border-radius: 6px; border: 1px solid #e3e7ec; }
+    code { background: #f1f1f1; padding: 2px 5px; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f3f5f7; }
+    .small { color: #444; font-size: 0.92em; }
+  </style>
+</head>
+<body>
+  <h1>Simulation Report: Potential-Game Multi-UAV Cooperative Search</h1>
+  <p class="small">Generated: 2026-04-17 05:57:47</p>
+
+  <h2>1) Key reproduced visualizations</h2>
+  <p class="small">Each figure is shown at large scale below (click to open full-size image).</p>
+  <div class="viz-grid">
+    <figure class="prominent">
+      <figcaption>Homogeneous coverage + failure reconfiguration</figcaption>
+      <a href="../outputs/fig4_homogeneous_with_failures.png"><img src="../outputs/fig4_homogeneous_with_failures.png" alt="homogeneous" /></a>
+    </figure>
+    <figure class="prominent">
+      <figcaption>Heterogeneous coverage</figcaption>
+      <a href="../outputs/fig5_heterogeneous_coverage.png"><img src="../outputs/fig5_heterogeneous_coverage.png" alt="heterogeneous" /></a>
+    </figure>
+    <figure class="prominent">
+      <figcaption>Coverage with obstacles</figcaption>
+      <a href="../outputs/fig6_obstacle_coverage.png"><img src="../outputs/fig6_obstacle_coverage.png" alt="obstacles" /></a>
+    </figure>
+    <figure class="prominent">
+      <figcaption>BLLL vs best-response comparison</figcaption>
+      <a href="../outputs/fig7_8_learning_comparison.png"><img src="../outputs/fig7_8_learning_comparison.png" alt="comparison" /></a>
+    </figure>
+    <figure class="prominent">
+      <figcaption>Probability-map snapshots (search)</figcaption>
+      <a href="../outputs/fig9_probability_snapshots.png"><img src="../outputs/fig9_probability_snapshots.png" alt="fig9" /></a>
+    </figure>
+    <figure class="prominent">
+      <figcaption>Uncertainty convergence parameter study</figcaption>
+      <a href="../outputs/fig10_uncertainty_parameter_study.png"><img src="../outputs/fig10_uncertainty_parameter_study.png" alt="fig10" /></a>
+    </figure>
+  </div>
+
+  <h2>2) Agent movement over time</h2>
+  <ul>
+    <li>Homogeneous trajectories: <a href="../outputs/homogeneous_trajectories.png">../outputs/homogeneous_trajectories.png</a></li>
+    <li>Homogeneous GIF: <a href="../outputs/homogeneous_movement.gif">../outputs/homogeneous_movement.gif</a></li>
+    <li>Obstacle trajectories: <a href="../outputs/obstacle_trajectories.png">../outputs/obstacle_trajectories.png</a></li>
+    <li>Obstacle GIF: <a href="../outputs/obstacle_movement.gif">../outputs/obstacle_movement.gif</a></li>
+    <li>Search trajectories: <a href="../outputs/search_trajectories.png">../outputs/search_trajectories.png</a></li>
+    <li>Search GIF: <a href="../outputs/search_movement.gif">../outputs/search_movement.gif</a></li>
+  </ul>
+
+  <h2>3) Impact analysis</h2>
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Observed value</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Final homogeneous potential</td>
+        <td>2326.4234</td>
+        <td>BLLL converges to high-coverage states and recovers after failures.</td>
+      </tr>
+      <tr>
+        <td>Final heterogeneous potential</td>
+        <td>2555.2864</td>
+        <td>Method naturally handles mixed sensing radii.</td>
+      </tr>
+      <tr>
+        <td>Final obstacle potential</td>
+        <td>5486.0000</td>
+        <td>Constrained action sets support non-convex environments.</td>
+      </tr>
+      <tr>
+        <td>Case A mean final potential (BLLL / BR)</td>
+        <td>2497.2611 / 2421.1723</td>
+        <td>BLLL reached a higher final mean potential in this case.</td>
+      </tr>
+      <tr>
+        <td>Case B mean final potential (BLLL / BR)</td>
+        <td>3444.1429 / 3419.7143</td>
+        <td>BLLL reached a higher final mean potential in this case.</td>
+      </tr>
+      <tr>
+        <td>Average runtime per run (BLLL / BR)</td>
+        <td>1.2298s / 6.2738s</td>
+        <td>Wall-clock mean over both comparison cases (A and B).</td>
+      </tr>
+      <tr>
+        <td>Final average uncertainty (search)</td>
+        <td>0.000003</td>
+        <td>Uncertainty decreases toward zero as observations + fusion accumulate.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">
+    Reproduction note: numerical values may differ from the paper due to unavailable exact map equations,
+    random seeds, and implementation-level assumptions reconstructed from parsed equations.
+    Qualitative behaviors and method structure are preserved.
+  </p>
+</body>
+</html>
